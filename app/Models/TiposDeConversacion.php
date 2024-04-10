@@ -4,15 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Calificaciones extends Model
+class TiposDeConversacion extends Model
 {
     use HasFactory, HasApiTokens, Notifiable;
+     
+    protected $table = 'tipos_de_conversacion';
     protected $fillable = [
-        'id_curso',
-        'id_estudiante',
-        'calificacion',
+
+        'nombre'
     ];
 }
