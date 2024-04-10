@@ -24,7 +24,7 @@ class CreateConversacionesRequest extends FormRequest
     public function rules()
     {
         return [
-            "id_tipo_comentario" => ["required"],
+            "id_tipo_conversacion" => ["required"],
             "fecha" => ["required", "string"],
             "estado" => ["required", "boolean"],
  

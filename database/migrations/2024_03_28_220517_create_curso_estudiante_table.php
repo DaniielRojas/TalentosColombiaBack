@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('curso_estudiante', function (Blueprint $table) {
           
             $table->integer('id')->autoIncrement()->nullable(false);
-            $table->integer('id_estudiante')->nullable(false);
-            $table->integer('id_curso')->nullable(false);
+            $table->integer('id_estudiante')->nullable(false)->onDelete("cascade");
+            $table->integer('id_curso')->nullable(false)->onDelete("cascade");
             $table->timestamp('fecha_inscripcion')->nullable(false);
             $table->boolean('estado')->nullable(false);
             $table->timestamps();

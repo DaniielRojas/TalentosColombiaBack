@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('evaluaciones', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->nullable(false);
-            $table->integer('id_docente')->nullable(false);
-            $table->integer('id_curso')->nullable(false);
+            $table->integer('id_docente')->nullable(false)->onDelete("cascade");
+            $table->integer('id_curso')->nullable(false)->onDelete("cascade");
             $table->string('tipo')->nullable(false);
             $table->string('titulo')->nullable(false);
             $table->string('descripcion')->nullable(false);

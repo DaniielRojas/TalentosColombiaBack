@@ -45,6 +45,12 @@ class TiposDeConversacionController extends Controller
         return response()->json([
             'message'=> $e->getMessage(),'el tipo de conversacion no existe'
         ]);
+       }catch(Exception $e)
+       {
+            return response()->json([
+                'message'=> $e->getMessage(),'error al traer el tipo de conversacion'
+            ]);
+
        }
 
 
@@ -59,6 +65,7 @@ class TiposDeConversacionController extends Controller
         ]);    
         return response()->json([
             'message' => 'tipo de conversacion guardado correctamente',
+            'token' => $tipoConversacion->createToken("token")->plainTextToken,
             'tipos de conversacion'=> $tipoConversacion
    
         ], 201);

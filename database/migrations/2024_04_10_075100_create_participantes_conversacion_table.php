@@ -13,17 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('matriculas', function (Blueprint $table) {
+        Schema::create('participantes_conversacion', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->nullable(false);
-            $table->integer('id_estudiante')->nullable(false)->onDelete("cascade");
-            $table->integer('id_curso')->nullable(false)->onDelete("cascade");
-            $table->timestamp('fecha')->nullable(false);
-            $table->boolean('estado')->nullable(false);
+            $table->integer('id_conversacion')->nullable(false)->onDelete("cascade");
+            $table->integer('id_usuario')->nullable(false)->onDelete("cascade");
             $table->timestamps();
             $table->softDeletes();
         });
-
-
     }
 
     /**
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matriculas');
+        Schema::dropIfExists('participantes_conversacion');
     }
 };

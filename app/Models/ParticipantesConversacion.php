@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Conversaciones extends Model
+class ParticipantesConversacion extends Model
 {
     use HasFactory, HasApiTokens, Notifiable;
-    protected $fillable = [
-        'id_tipo_conversacion',
-        'fecha',
-        'estado',
-    ];
 
+    protected $table = "participantes_conversacion";
+    protected $fillable = [
+
+        'id_conversacion',
+        'id_usuario',
+
+    ];
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->nullable(false);
-            $table->integer('id_usuario')->nullable(false);
+            $table->integer('id_usuario')->nullable(false)->onDelete("cascade");
             $table->morphs('commentable');
             $table->text('comentario');
             $table->timestamp('fecha')->nullable(false);

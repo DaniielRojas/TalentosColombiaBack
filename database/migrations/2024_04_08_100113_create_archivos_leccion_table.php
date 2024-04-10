@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('archivos_leccion', function (Blueprint $table) {
                 $table->integer('id')->autoIncrement()->nullable(false);
-                $table->integer('id_leccion')->nullable(false);
+                $table->integer('id_leccion')->nullable(false)->onDelete("cascade");
                 $table->string('tipo')->nullable(false);
                 $table->string('ubicacion')->nullable(false);
                 $table->timestamps();

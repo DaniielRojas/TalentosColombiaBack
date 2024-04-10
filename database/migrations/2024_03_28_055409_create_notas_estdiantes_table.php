@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('notas_estudiantes', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->nullable(false);
-            $table->integer('id_evaluacion')->nullable(false);
-            $table->integer('id_estudiante')->nullable(false);
+            $table->integer('id_evaluacion')->nullable(false)->onDelete("cascade");
+            $table->integer('id_estudiante')->nullable(false)->onDelete("cascade");
             $table->string('nota')->nullable(false);
             $table->timestamps();
             $table->softDeletes();

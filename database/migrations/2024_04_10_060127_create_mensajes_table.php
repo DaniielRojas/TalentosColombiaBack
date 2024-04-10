@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('mensajes', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->nullable(false);
-            $table->integer('id_conversacion')->nullable(false);
-            $table->integer('id_usuario')->nullable(false);
+            $table->integer('id_conversacion')->nullable(false)->onDelete("cascade");
+            $table->integer('id_usuario')->nullable(false)->onDelete("cascade");
             $table->string('contenido')->nullable(false);
             $table->timestamp('fecha')->nullable(false);
             $table->boolean('estado')->nullable(false);

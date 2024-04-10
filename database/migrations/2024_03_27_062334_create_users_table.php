@@ -24,8 +24,8 @@ return new class extends Migration
             $table->timestamp('fecha_nacimiento')->nullable(false);
             $table->string('password')->nullable(false);
             $table->string('imagen')->nullable(false);
-            $table->integer('id_rol')->nullable(false);
-            $table->integer('id_tipo_documento')->nullable(false);
+            $table->integer('id_rol')->nullable(false)->onDelete("cascade");
+            $table->integer('id_tipo_documento')->nullable(false)->onDelete("cascade");
             $table->timestamps();
             $table->softDeletes();
         });

@@ -56,7 +56,7 @@ class ConversacionesController extends Controller
         try{
          $data = $request->validated(); 
          $conversaciones = Conversaciones::create([
-            'id_tipo_comentario' => $data['id_tipo_comentario'],
+            'id_tipo_conversacion' => $data['id_tipo_conversacion'],
             'fecha' => $data['fecha'],
             'estado' => $data['estado'],
          ]);
@@ -85,7 +85,7 @@ class ConversacionesController extends Controller
             $conversaciones = Conversaciones::findOrFail($id);
             $data = $request->validated();
             $conversaciones->update([
-            'id_tipo_comentario' => $data['id_tipo_comentario'],
+            'id_tipo_conversacion' => $data['id_tipo_conversacion'],
             'fecha' => $data['fecha'],
             'estado' => $data['estado'],
             ]);
