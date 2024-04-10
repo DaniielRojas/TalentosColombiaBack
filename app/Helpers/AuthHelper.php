@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AuthHelper
@@ -10,12 +11,12 @@ class AuthHelper
     {
         return Auth::check() && Auth::user()->id_rol === 1;
     }
-
+    
     public static function isStudent()
     {
         return Auth::check() && Auth::user()->id_rol === 2;
     }
-
+    
     public static function isTeacher()
     {
         return Auth::check() && Auth::user()->id_rol === 3;

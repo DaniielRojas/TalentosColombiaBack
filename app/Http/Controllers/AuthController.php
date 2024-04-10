@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AuthHelper;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
@@ -20,7 +21,12 @@ class AuthController extends Controller
         try {
 
             $data = $request->validated();
-            
+           
+            if ($data['id_rol'] == 1) {
+                return response()->json([
+                   'message' => 'No es permitido guardar este usuario. Comuníquese con su administrador.'
+                ]);
+            }
             // Crear un nuevo usuario con los datos proporcionados
             $user = User::create([
                 'nombre' => $data['nombre'],
@@ -57,6 +63,8 @@ class AuthController extends Controller
                 'message' => 'Error al registrar el usuario: ' . $e->getMessage()
             ], 500); // Código de estado HTTP 500 para indicar un error del servidor
         }
+    
+        
 
     }
 
@@ -66,8 +74,11 @@ class AuthController extends Controller
         /* Validar el login */
         $data = $request->validated();
 
-    
-
+        if (!User::where('email', $data['email'])->exists()) {
+            return response()->json([
+                'errors' => ['El email  no existe']
+            ], 422);
+        }
         if (!Auth::attempt($data)) {
             return response([
                 "errors" => ["El email o el password son incorrectos"]

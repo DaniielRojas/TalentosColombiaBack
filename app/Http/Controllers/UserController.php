@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AuthHelper;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
@@ -19,6 +20,7 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
+      
           try{
             $users = User::with('cursoEstudiante')->get();
             return response()->json([
@@ -34,6 +36,12 @@ class UserController extends Controller
     public function show($id): JsonResponse
     {
         try {
+            
+            if ($id == 1) {
+                return response()->json([
+                   'message' => 'este usuario no esta disponible para visualizacion comuniquese con su administrador.'
+                ]);
+            }
             // Buscar el usuario por su ID
             $user = User::with("cursoEstudiante")->findOrFail($id);
 
@@ -62,6 +70,13 @@ class UserController extends Controller
     {
         try {
 
+            if (!AuthHelper::isAdmin())
+            {
+                return response()->json([
+                 
+                    'message' => 'el usuario no es un administrador'   
+                ]);
+            }
             $data = $request->validated();
             // Crear un nuevo usuario con los datos proporcionados
             $user = User::create([
@@ -106,7 +121,7 @@ class UserController extends Controller
             try {
                 // Encuentra el usuario por su ID
                 $user = User::with('cursoEstudiante')->findOrFail($id);
-
+ 
                 $data = $request->validated();
 
                 // Actualizar el usuario con los datos proporcionados
@@ -146,6 +161,17 @@ class UserController extends Controller
     public function destroy($id): JsonResponse
     {
         try {
+
+            if (!AuthHelper::isAdmin())
+            {
+                return response()->json([ 
+                    'message' => 'el usuario no es un administrador'   
+                ]);
+            }else if ($id == 1) {
+                return response()->json([
+                   'message' => 'este usuario no esta disponible para eminacion comuniquese con su administrador.'
+                ]);
+            }
             // Encuentra el usuario por su ID
             $user = User::findOrFail($id);
 
