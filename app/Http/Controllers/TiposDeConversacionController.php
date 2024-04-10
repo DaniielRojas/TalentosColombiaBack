@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTiposConversacionRequest;
+use App\Http\Requests\UpdateTiposConversacionRequest;
 use App\Models\TiposDeConversacion;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -75,7 +76,7 @@ class TiposDeConversacionController extends Controller
         }  
     }
 
-    public function update(CreateTiposConversacionRequest $request, $id): JsonResponse
+    public function update(UpdateTiposConversacionRequest $request, $id): JsonResponse
     {
         
         try{

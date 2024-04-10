@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTiposConversacionRequest extends FormRequest
+class UpdateConversacionesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class UpdateTiposConversacionRequest extends FormRequest
     public function rules()
     {
         return [
-            "nombre" => ["required","string","max:255"],
+            "id_tipo_comentario" => ["required"],
+            "fecha" => ["required", "string"],
+            "estado" => ["required", "boolean"],
         ];
     }
 }

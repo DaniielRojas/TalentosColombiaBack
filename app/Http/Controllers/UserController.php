@@ -101,46 +101,46 @@ class UserController extends Controller
 
     }
 
-    public function update(UpdateUserRequest $request, $id): JsonResponse
-    {
-        try {
-            // Encuentra el usuario por su ID
-            $user = User::with('cursoEstudiante')->findOrFail($id);
+        public function update(UpdateUserRequest $request, $id): JsonResponse
+        {
+            try {
+                // Encuentra el usuario por su ID
+                $user = User::with('cursoEstudiante')->findOrFail($id);
 
-            $data = $request->validated();
+                $data = $request->validated();
 
-            // Actualizar el usuario con los datos proporcionados
-            $user->update([
-                'nombre' => $data['nombre'],
-                'apellido' => $data['apellido'],
-                'numero_documento' => $data['numero_documento'],
-                'usuario' => $data['usuario'],
-                'fecha_nacimiento' => $data['fecha_nacimiento'],
-                'direccion' => $data['direccion'],
-                'id_tipo_documento' => $data['id_tipo_documento'],
-                'id_rol' => $data['id_rol'],
-                'imagen' => $data['imagen'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-            ]);
-            $user->refresh();
-            return response()->json([
-                'message' => 'Usuario actualizado correctamente',
-                "token" => $user->createToken("token")->plainTextToken,
-                'user' => $user
-            ]);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'El usuario no existe'], 404);
-        } catch (ValidationException $e) {
-            $errors = $e->validator->errors()->all();
-            // En caso de error, devolver una respuesta JSON con un mensaje de error
-            return response()->json([
-                'message' => 'Error al actualizar el usuario: ' . $e->getMessage(),
-                'errors' => $errors
-            ], 422);
+                // Actualizar el usuario con los datos proporcionados
+                $user->update([
+                    'nombre' => $data['nombre'],
+                    'apellido' => $data['apellido'],
+                    'numero_documento' => $data['numero_documento'],
+                    'usuario' => $data['usuario'],
+                    'fecha_nacimiento' => $data['fecha_nacimiento'],
+                    'direccion' => $data['direccion'],
+                    'id_tipo_documento' => $data['id_tipo_documento'],
+                    'id_rol' => $data['id_rol'],
+                    'imagen' => $data['imagen'],
+                    'email' => $data['email'],
+                    'password' => bcrypt($data['password']),
+                ]);
+                $user->refresh();
+                return response()->json([
+                    'message' => 'Usuario actualizado correctamente',
+                    "token" => $user->createToken("token")->plainTextToken,
+                    'user' => $user
+                ]);
+            } catch (ModelNotFoundException $e) {
+                return response()->json(['message' => 'El usuario no existe'], 404);
+            } catch (ValidationException $e) {
+                $errors = $e->validator->errors()->all();
+                // En caso de error, devolver una respuesta JSON con un mensaje de error
+                return response()->json([
+                    'message' => 'Error al actualizar el usuario: ' . $e->getMessage(),
+                    'errors' => $errors
+                ], 422);
+            }
+
         }
-
-    }
 
  
     public function destroy($id): JsonResponse

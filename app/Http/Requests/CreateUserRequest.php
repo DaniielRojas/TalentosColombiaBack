@@ -36,8 +36,8 @@ class CreateUserRequest extends FormRequest
                 "confirmed",
                 PasswordRules::min(8)->letters()->symbols()->numbers()
             ],
-            'id_rol' =>  ["required"], // Asegura que el 'rol_id' exista en la tabla 'roles'
-            'id_tipo_documento' =>  ["required"], // Asegura que el 'documento_id' exista en la tabla 'documentos'
+            "id_rol" =>  ["required"], // Asegura que el "rol_id" exista en la tabla "roles"
+            "id_tipo_documento" =>  ["required"], // Asegura que el 'documento_id' exista en la tabla 'documentos'
 
         ];
     }

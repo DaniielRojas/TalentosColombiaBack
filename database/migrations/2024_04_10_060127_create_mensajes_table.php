@@ -13,22 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('evaluaciones', function (Blueprint $table) {
+        Schema::create('mensajes', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->nullable(false);
-            $table->integer('id_docente')->nullable(false);
-            $table->integer('id_curso')->nullable(false);
-            $table->string('tipo')->nullable(false);
-            $table->string('titulo')->nullable(false);
-            $table->string('descripcion')->nullable(false);
-            $table->string('nota_maxima')->nullable(false);
-            $table->timestamp('fecha_inicio')->nullable(false);
-            $table->timestamp('fecha_fin')->nullable(false);
+            $table->integer('id_tipo_conversacion')->nullable(false);
+            $table->integer('id_usuario')->nullable(false);
+            $table->string('contenido')->nullable(false);
+            $table->timestamp('fecha')->nullable(false);
             $table->boolean('estado')->nullable(false);
             $table->timestamps();
             $table->softDeletes();
         });
-
-
     }
 
     /**
@@ -38,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evaluaciones');
+        Schema::dropIfExists('mensajes');
     }
 };

@@ -27,24 +27,24 @@ class UpdateUserRequest extends FormRequest
     {
 
         // Obtén el ID del usuario de la ruta de la URL
-        $user_id = $this->route('usuario');
+        $user_id = $this->route("usuario");
 
         return [
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'numero_documento' => 'required|string|max:20', // Asegura que el número de documento sea único en la tabla 'users'
-            'usuario' => 'required|string|max:255', // Asegura que el nombre de usuario sea único en la tabla 'users'
-            'email' => 'required|string|email|max:255', // Asegura que el correo sea único en la tabla 'users' y tenga formato de correo electrónico
-            'password' =>  [
+            "nombre" => "required|string|max:255",
+            "apellido" => "required|string|max:255",
+            "numero_documento" => "required|string|max:20", // Asegura que el número de documento sea único en la tabla "users"
+            "usuario" => "required|string|max:255", // Asegura que el nombre de usuario sea único en la tabla "users"
+            "email" => "required|string|email|max:255", // Asegura que el correo sea único en la tabla "users" y tenga formato de correo electrónico
+            "password" =>  [
                 "required",
                 "confirmed",
                 PasswordRules::min(8)->letters()->symbols()->numbers()
             ],
-            'imagen' => 'nullable|string', // Asegura que la imagen sea un archivo de imagen válido y tenga un tamaño máximo de 2MB
-            'id_rol' => 'required', // Asegura que el 'rol_id' exista en la tabla 'roles'
-            'id_tipo_documento' => 'required', // Asegura que el 'documento_id' exista en la tabla 'documentos'
-            'fecha_nacimiento' => 'required|string|max:255',
-            'direccion' => 'required|string|max:255'
+            "imagen" => "nullable|string", // Asegura que la imagen sea un archivo de imagen válido y tenga un tamaño máximo de 2MB
+            "id_rol" => "required", // Asegura que el "rol_id" exista en la tabla "roles"
+            "id_tipo_documento" => "required", // Asegura que el "documento_id" exista en la tabla "documentos"
+            "fecha_nacimiento" => "required|string|max:255",
+            "direccion" => "required|string|max:255"
         ];
     }
 }

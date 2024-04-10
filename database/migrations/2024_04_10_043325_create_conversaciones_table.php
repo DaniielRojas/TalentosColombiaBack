@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('conversaciones', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->autoIncrement()->nullable(false);
+            $table->integer('id_tipo_comentario')->nullable(false);
+            $table->timestamp('fecha')->nullable(false);
+            $table->boolean('estado')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
