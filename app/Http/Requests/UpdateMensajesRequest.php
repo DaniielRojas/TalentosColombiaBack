@@ -13,7 +13,7 @@ class UpdateMensajesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class UpdateMensajesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+           
+            "id_conversacion" => ["required", "string","nullable" ],
+            "id_usuario" => ["required", "string", "nullable" ],
+            "contenido" => ["required", "string", "nullable" ],
+            "fecha" => ["required", "string"],
+            "estado" => ["required", "boolean"],
+            
         ];
     }
 }

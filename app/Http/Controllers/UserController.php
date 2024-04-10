@@ -139,7 +139,7 @@ class UserController extends Controller
                     'errors' => $errors
                 ], 422);
             }
-
+            
         }
 
  
